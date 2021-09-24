@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+       h2{
+        text-align: center;
+        } 
+       p{
+        text-align: center;   
+       } 
+        #photo{
+            width: 500px;
+            height: 800px;
+            display: block;
+        margin-left: auto;
+        margin-right: auto
+        }
+    </style>
+    <h2>Astronomy Picture of the Day</h2>
+    <p><a href=https://apod.nasa.gov/apod/archivepix.htm> Discover the cosmos!</a> Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer. </p>
+    <p id="today"></p>
+    <img src="" id="photo">
+    <script>
+       document.addEventListener("DOMContentLoaded",
+       function(event){
+      fetch("https://api.nasa.gov/planetary/apod?api_key=uoHj3VigYE8OC5hzIoq6zc3z5z3fjdb148WxFEpF")
+      .then(response => response.json())
+      .then(planetary => {
+          document.getElementById("photo").src = planetary.hdurl;
+          document.getElementById("today").innerText = planetary.date;
+          console.log(planetary)
+      })
+      .catch(error => console.log(error));
+    });
+    </script>
+   
+</body>
+</html>
